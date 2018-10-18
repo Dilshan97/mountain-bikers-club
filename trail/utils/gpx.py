@@ -168,7 +168,7 @@ def parse(xml):
             cur_p['total_distance'] = total_distance['value']
 
         cur_p['distance'] = cheap_distance
-        cur_p['slope'] = 100 * (smoothed_elevations[n - 1] - smoothed_elevations[n]) / cheap_distance if cheap_distance > 0 else 0.
+        cur_p['grade'] = -100 * (smoothed_elevations[n - 1] - smoothed_elevations[n]) / cheap_distance if cheap_distance != 0 else 0.
 
         return cur_p
 
