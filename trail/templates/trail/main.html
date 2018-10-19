@@ -1,5 +1,5 @@
 {% extends 'shell/base.html' %}
-{% load tz static i18n tpl_button filter_gpx index %}
+{% load tz static i18n tpl_button filter_gpx filter_markdown index %}
 
 {% block title %}
     {% trans 'Unnamed trail' as trail_noname %}
@@ -161,7 +161,7 @@
             {% endif %}
             {% if trail.description %}
                 {# TODO Styling as quote? #}
-                <p>{{ trail.description }}</p>
+                {{ trail.description|markdown|safe }}
             {% endif %}
             <p><!-- empty --></p>
             <link rel="stylesheet" href="{% url 'bokeh__css' %}">

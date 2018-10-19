@@ -21,7 +21,7 @@ class Trail(models.Model):
 
     # Info
     name = models.CharField(_('Title'), max_length=255, blank=True)
-    description = models.TextField(_('Description'), blank=True)
+    description = models.TextField(_('Description'), blank=True, help_text=_('Markdown is partially supported'))
     tracks = JSONField(null=True)
 
     # Files
