@@ -105,6 +105,7 @@ SERVER_EMAIL = 'django@mountainbikers.club'
 
 IGNORABLE_404_URLS = [
     re.compile(r'^/favicon\.ico$'),
+    re.compile(r'^\.js\.map$'),
 ]
 
 
