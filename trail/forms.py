@@ -1,6 +1,7 @@
 from django import forms
 
 from .models import Trail
+from shell.widgets import MarkdownWidget
 
 
 class GpxUploadForm(forms.ModelForm):
@@ -19,6 +20,7 @@ class GpxEditForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['name'].widget.attrs['autofocus'] = 'true'
+        self.fields['description'].widget = MarkdownWidget()
 
     class Meta:
         model = Trail

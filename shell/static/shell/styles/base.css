@@ -277,6 +277,10 @@
     font-family: inherit;
 }
 
+.django__form__list markdown-editor textarea {
+    width: calc(70% - 16px);
+}
+
 .django__form__list input[type="checkbox"] {
     width: unset;
     min-width: unset;
