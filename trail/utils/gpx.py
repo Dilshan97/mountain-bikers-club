@@ -256,7 +256,7 @@ def parse(xml):
             parsed_start_datetime = parse_time(start_datetime)
             parsed_end_datetime = parse_time(end_datetime)
             total_time = math.fabs((parsed_end_datetime - parsed_start_datetime).total_seconds())
-            average_speed = (distance / total_time) * 3600. / 1000.
+            average_speed = (distance / total_time) * 3600. / 1000. if total_time > 0 else 0.
 
         parsed_tracks.append({
             'name': track_name.text if track_name else None,
