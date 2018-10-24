@@ -82,6 +82,20 @@ def favorite(request, trail_id):
     return HttpResponseRedirect(reverse('trail__main', args=[trail.id]))
 
 
+@login_required
+def private(request, trail_id):
+    trail = get_object_or_404(Trail, pk=trail_id, author=request.user)
+
+    if trail.is_private:
+        trail.is_private = False
+    else:
+        trail.is_private = True
+
+    trail.save()
+
+    return HttpResponseRedirect(reverse('trail__main', args=[trail.id]))
+
+
 class TrailDelete(DeleteView):
     success_url = reverse_lazy('dashboard__main')
     model = Trail

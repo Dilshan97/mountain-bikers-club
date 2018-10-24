@@ -82,7 +82,7 @@
 }
 
 
-/* --- Button --- */
+/* --- Buttons --- */
 
 .button__outer {
     --button-color: var(--blue);
@@ -163,6 +163,25 @@
 
 .button span {
     position: relative;
+}
+
+.mini-button {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--blue);
+    border-radius: 3px;
+    color: var(--blue);
+    padding: 8px 10px;
+    margin: 0 5px;
+    line-height: 20px;
+}
+
+.mini-button.is-favorite {
+    color: var(--red);
+}
+
+.mini-button svg {
+    margin-right: 10px;
 }
 
 

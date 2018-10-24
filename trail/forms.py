@@ -7,7 +7,7 @@ from shell.widgets import MarkdownWidget
 class GpxUploadForm(forms.ModelForm):
     class Meta:
         model = Trail
-        fields = ('file', 'is_private')
+        fields = ('file',)
 
     def save(self, commit=True):
         trail = super().save(commit=False)
@@ -24,7 +24,7 @@ class GpxEditForm(forms.ModelForm):
 
     class Meta:
         model = Trail
-        fields = ('name', 'description', 'is_private')
+        fields = ('name', 'description')
 
     def save(self, commit=True):
         trail = super().save(commit=False)

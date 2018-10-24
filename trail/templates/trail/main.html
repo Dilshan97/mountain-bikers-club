@@ -12,7 +12,8 @@
         {% with trail.tracks|first as track %}
             {% trans 'Unnamed trail' as trail_noname %}
             <meta property="og:title"
-                  content="{{ trail.name|default:trail_noname }}{% if track.location %} ・ {{ track.location }}{% endif %}">
+                  content="
+                      {{ trail.name|default:trail_noname }}{% if track.location %} ・ {{ track.location }}{% endif %}">
             <meta property="og:description"
                   content="{% trans 'Distance' %}: {{ track.distance|default:0|floatformat:"-2" }}km ・ {% trans 'Duration' %}: {{ track.moving_time|format_time }} ・ {% trans 'Uphill' %}: {{ track.uphill|default:0|floatformat:"0" }}m">
         {% endwith %}
@@ -35,28 +36,41 @@
             {% trans 'Unnamed trail' as trail_noname %}
             <h1 class="has-no-bottom-space">{{ trail.name|default:trail_noname }}</h1>
             <p class="trail__published has-hidden-links">
-                {% if trail.is_private %}
-                    <svg width="20" height="20" aria-hidden="true" style="vertical-align: text-top">
-                        <use xlink:href="#lock"></use>
-                    </svg>
-                {% endif %}
                 {% url 'member__main' trail.author.username as link %}
                 {% blocktrans trimmed with user=trail.author.username date=trail.pub_date|date link=link %}
-                    Published by <a href="{{ link }}">@{{ user }}</a> on {{ date }}.
+                    Published by <a href="{{ link }}">@{{ user }}</a> on {{ date }}
                 {% endblocktrans %}
-                ・
-                <span class="trail__favorite">
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'trail__favorite' trail.id %}"
-                           class="{% if is_favorite %}is-favorite{% endif %}">
-                    {% endif %}
-                    <svg width="20" height="20" class="trail__icon">
+                {% if user.is_authenticated and trail.author == user %}
+                    <a href="{% url 'trail__private' trail.id %}"
+                       class="mini-button">
+                        {% if trail.is_private == True %}
+                            <svg width="20" height="20" aria-hidden="true" style="vertical-align: text-top">
+                                <use xlink:href="#lock"></use>
+                            </svg>
+                            {% trans 'Private'|lower %}
+                        {% else %}
+                            <svg width="20" height="20" aria-hidden="true" style="vertical-align: text-top">
+                                <use xlink:href="#unlock"></use>
+                            </svg>
+                            {% trans 'Public'|lower %}
+                        {% endif %}
+                    </a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <a href="{% url 'trail__favorite' trail.id %}"
+                       class="mini-button {% if is_favorite %}is-favorite{% endif %}">
+                {% else %}
+                    <span class="trail__favorite {% if is_favorite %}is-favorite{% endif %}">
+                {% endif %}
+                    <svg width="20" height="20">
                         <use xlink:href="#heart"></use>
                     </svg>
-                    {% if user.is_authenticated %}
-                        </a>
-                    {% endif %}
                     {{ trail.favorite_by.all|length }}
+                {% if user.is_authenticated %}
+                    </a>
+                {% else %}
+                    </span>
+                {% endif %}
                 </span>
             </p>
             {% if user.is_authenticated and user == trail.author and trail.is_draft is False %}
