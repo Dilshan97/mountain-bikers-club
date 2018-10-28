@@ -40,7 +40,9 @@ export default function dom(strings, ...expressions) {
     if (expressions.length > 0) {
         const resolvedExpressions = resolveExpressions(expressions, tagPromise);
 
-        resolvedExpressions.forEach((expr, i) => html.push(expr, strings[i + 1]));
+        resolvedExpressions.forEach((expr, i) =>
+            html.push(expr, strings[i + 1]),
+        );
     }
 
     template.innerHTML = flatten(html).join('');
@@ -68,7 +70,9 @@ export default function dom(strings, ...expressions) {
                 // this is a simple text node but we parse it. !createTextNode
                 value = dom`${value}`.fragment;
             } else if (!(value instanceof DocumentFragment)) {
-                const { fragment } = isDomObject(value) ? value : dom`${typeof value === 'function' ? value() : value}`;
+                const { fragment } = isDomObject(value)
+                    ? value
+                    : dom`${typeof value === 'function' ? value() : value}`;
 
                 value = fragment;
             }
@@ -147,7 +151,10 @@ function resolveExpressions(expressions, tagPromise) {
 
     expressions.forEach(entry => {
         // null or undefined
-        if (entry == undefined || (Array.isArray(entry) && entry.length === 0)) {
+        if (
+            entry == undefined ||
+            (Array.isArray(entry) && entry.length === 0)
+        ) {
             return;
         }
 
@@ -197,7 +204,5 @@ function flatten(arr = []) {
 }
 
 function uid() {
-    return Math.random()
-        .toString(36)
-        .substr(2);
+    return Math.random().toString(36).substr(2);
 }
