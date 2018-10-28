@@ -41,20 +41,25 @@
                     Published by <a href="{{ link }}">@{{ user }}</a> on {{ date }}
                 {% endblocktrans %}
                 {% if user.is_authenticated and trail.author == user %}
-                    <a href="{% url 'trail__private' trail.id %}"
-                       class="mini-button">
-                        {% if trail.is_private == True %}
-                            <svg width="20" height="20" aria-hidden="true" style="vertical-align: text-top">
-                                <use xlink:href="#lock"></use>
-                            </svg>
-                            {% trans 'Private'|lower %}
-                        {% else %}
-                            <svg width="20" height="20" aria-hidden="true" style="vertical-align: text-top">
-                                <use xlink:href="#unlock"></use>
-                            </svg>
-                            {% trans 'Public'|lower %}
-                        {% endif %}
-                    </a>
+                    <private-button data-url="{% url 'trail__private' trail.id %}"
+                                  data-active="{% trans 'Private'|lower %}"
+                                  data-inactive="{% trans 'Public'|lower %}"
+                                  data-status="{{ trail.is_private|lower }}"
+                                  class="mini-button" role="button">
+                        <a href="{% url 'trail__private' trail.id %}">
+                            {% if trail.is_private == True %}
+                                <svg width="20" height="20" aria-hidden="true">
+                                    <use xlink:href="#lock"></use>
+                                </svg>
+                                {% trans 'Private'|lower %}
+                            {% else %}
+                                <svg width="20" height="20" aria-hidden="true">
+                                    <use xlink:href="#unlock"></use>
+                                </svg>
+                                {% trans 'Public'|lower %}
+                            {% endif %}
+                        </a>
+                    </private-button>
                 {% endif %}
                 {% if user.is_authenticated %}
                     <a href="{% url 'trail__favorite' trail.id %}"

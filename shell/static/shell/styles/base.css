@@ -174,14 +174,11 @@
     padding: 8px 10px;
     margin: 0 5px;
     line-height: 20px;
-}
-
-.mini-button.is-favorite {
-    color: var(--red);
+    cursor: pointer;
 }
 
 .mini-button svg {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 

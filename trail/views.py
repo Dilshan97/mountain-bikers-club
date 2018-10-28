@@ -8,6 +8,7 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.views.generic import DeleteView
+from django.views.decorators.csrf import csrf_exempt
 from bokeh.plotting import figure, ColumnDataSource
 from bokeh.embed import components
 from bokeh.layouts import gridplot
@@ -73,16 +74,22 @@ def favorite(request, trail_id):
     current_user = request.user
     current_user_favorite_trails = current_user.favorite_trails.all()
     trail = get_object_or_404(Trail, pk=trail_id)
+    is_favorite = True
 
     if trail in current_user_favorite_trails:
         current_user.favorite_trails.remove(trail)
+        is_favorite = False
     else:
         current_user.favorite_trails.add(trail)
 
-    return HttpResponseRedirect(reverse('trail__main', args=[trail.id]))
+    if request.method == 'PUT':
+        return JsonResponse({'status': is_favorite})
+    else:
+        return HttpResponseRedirect(reverse('trail__main', args=[trail.id]))
 
 
 @login_required
+@csrf_exempt
 def private(request, trail_id):
     trail = get_object_or_404(Trail, pk=trail_id, author=request.user)
 
@@ -93,7 +100,10 @@ def private(request, trail_id):
 
     trail.save()
 
-    return HttpResponseRedirect(reverse('trail__main', args=[trail.id]))
+    if request.method == 'PUT':
+        return JsonResponse({'status': trail.is_private})
+    else:
+        return HttpResponseRedirect(reverse('trail__main', args=[trail.id]))
 
 
 class TrailDelete(DeleteView):
