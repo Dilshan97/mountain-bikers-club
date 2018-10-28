@@ -38,7 +38,7 @@
             <p class="trail__published has-hidden-links">
                 {% url 'member__main' trail.author.username as link %}
                 {% blocktrans trimmed with user=trail.author.username date=trail.pub_date|date link=link %}
-                    Published by <a href="{{ link }}">@{{ user }}</a> on {{ date }}
+                    Published by <a href="{{ link }}">@{{ user }}</a> on {{ date }}.
                 {% endblocktrans %}
                 {% if user.is_authenticated and trail.author == user %}
                     <private-button data-url="{% url 'trail__private' trail.id %}"

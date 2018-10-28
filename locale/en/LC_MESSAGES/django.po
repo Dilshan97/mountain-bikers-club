@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-15 19:39+0000\n"
+"POT-Creation-Date: 2018-10-28 20:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -303,15 +303,15 @@ msgstr ""
 msgid "Yes, I am sure!"
 msgstr ""
 
-#: mountainbikers/settings.py:154
+#: mountainbikers/settings.py:155
 msgid "French"
 msgstr ""
 
-#: mountainbikers/settings.py:155
+#: mountainbikers/settings.py:156
 msgid "English"
 msgstr ""
 
-#: mountainbikers/settings.py:156
+#: mountainbikers/settings.py:157
 msgid "German"
 msgstr ""
 
@@ -341,27 +341,19 @@ msgstr ""
 msgid "or"
 msgstr ""
 
-#: shell/templates/shell/base.html:128
-msgid "Facebook page"
-msgstr ""
-
-#: shell/templates/shell/base.html:135
-msgid "Facebook Messenger"
-msgstr ""
-
-#: shell/templates/shell/base.html:142
+#: shell/templates/shell/base.html:145
 msgid "Mastodon social network"
 msgstr ""
 
-#: shell/templates/shell/base.html:149
+#: shell/templates/shell/base.html:152
 msgid "Source Code on Github"
 msgstr ""
 
-#: shell/templates/shell/base.html:156
+#: shell/templates/shell/base.html:159
 msgid "Buy me a coffee support page"
 msgstr ""
 
-#: shell/templates/shell/base.html:171
+#: shell/templates/shell/base.html:174
 msgid ""
 "Developing and hosting a great web applicable is fun, but not free. If you "
 "love Mountain Bikers Club please consider <a href=\"https://www.buymeacoffee."
@@ -381,7 +373,8 @@ msgstr ""
 msgid "Draft"
 msgstr ""
 
-#: trail/models.py:20
+#: trail/models.py:20 trail/templates/trail/main.html:45
+#: trail/templates/trail/main.html:54
 msgid "Private"
 msgstr ""
 
@@ -397,13 +390,17 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
+#: trail/models.py:24
+msgid "Markdown is partially supported"
+msgstr ""
+
 #: trail/models.py:28
 msgid "GPX file"
 msgstr ""
 
 #: trail/tasks.py:75 trail/templates/trail/edit.html:5
 #: trail/templates/trail/edit.html:16 trail/templates/trail/main.html:5
-#: trail/templates/trail/main.html:13 trail/templates/trail/main.html:35
+#: trail/templates/trail/main.html:13 trail/templates/trail/main.html:36
 #: trail/templates/trail/tag_trail_preview.html:9
 #: trail/templates/trail/trail_confirm_delete.html:5
 #: trail/templates/trail/trail_confirm_delete.html:16
@@ -420,63 +417,67 @@ msgstr ""
 msgid "Map"
 msgstr ""
 
-#: trail/templates/trail/main.html:17 trail/templates/trail/main.html:116
+#: trail/templates/trail/main.html:18 trail/templates/trail/main.html:135
 #: trail/templates/trail/tag_trail_preview.html:39
 msgid "Distance"
 msgstr ""
 
-#: trail/templates/trail/main.html:17
+#: trail/templates/trail/main.html:18
 msgid "Duration"
 msgstr ""
 
-#: trail/templates/trail/main.html:17 trail/templates/trail/main.html:123
+#: trail/templates/trail/main.html:18 trail/templates/trail/main.html:142
 #: trail/templates/trail/tag_trail_preview.html:46
 msgid "Uphill"
 msgstr ""
 
-#: trail/templates/trail/main.html:44
+#: trail/templates/trail/main.html:40
 #, python-format
 msgid "Published by <a href=\"%(link)s\">@%(user)s</a> on %(date)s."
 msgstr ""
 
-#: trail/templates/trail/main.html:64
+#: trail/templates/trail/main.html:46 trail/templates/trail/main.html:59
+msgid "Public"
+msgstr ""
+
+#: trail/templates/trail/main.html:83
 msgid "Edit trail"
 msgstr ""
 
-#: trail/templates/trail/main.html:78
+#: trail/templates/trail/main.html:97
 #: trail/templates/trail/tag_trail_preview.html:32
 msgid "Location"
 msgstr ""
 
-#: trail/templates/trail/main.html:85
+#: trail/templates/trail/main.html:104
 msgid "Minimum altitude"
 msgstr ""
 
-#: trail/templates/trail/main.html:92
+#: trail/templates/trail/main.html:111
 msgid "Maximun altidtude"
 msgstr ""
 
-#: trail/templates/trail/main.html:99
+#: trail/templates/trail/main.html:118
 msgid "Start date and time"
 msgstr ""
 
-#: trail/templates/trail/main.html:130
+#: trail/templates/trail/main.html:149
 msgid "Moving time"
 msgstr ""
 
-#: trail/templates/trail/main.html:137
+#: trail/templates/trail/main.html:156
 msgid "Average moving speed"
 msgstr ""
 
-#: trail/templates/trail/main.html:144
+#: trail/templates/trail/main.html:163
 msgid "Maximum speed"
 msgstr ""
 
-#: trail/templates/trail/main.html:153
+#: trail/templates/trail/main.html:172
 msgid "Analyzing..."
 msgstr ""
 
-#: trail/templates/trail/main.html:155
+#: trail/templates/trail/main.html:174
 #, python-format
 msgid ""
 "Your trail is currently being analyzed. It will take a few minutes. Once "
@@ -484,12 +485,12 @@ msgid ""
 "Mountain Bikers Club or <a href=\"%(url_trail_new)s\">upload a new trail</a>."
 msgstr ""
 
-#: trail/templates/trail/main.html:185
+#: trail/templates/trail/main.html:204
 #: trail/templates/trail/tag_trail_preview.html:19
 msgid "Map of the trail: "
 msgstr ""
 
-#: trail/templates/trail/main.html:203
+#: trail/templates/trail/main.html:222
 msgid "Delete trail"
 msgstr ""
 
@@ -508,30 +509,30 @@ msgstr ""
 msgid "Are you sure you want to delete \"%(trail_name)s\"?"
 msgstr ""
 
-#: trail/views.py:101 trail/views.py:283
+#: trail/views.py:125 trail/views.py:348
 msgid "Trail does not exist"
 msgstr ""
 
-#: trail/views.py:154
+#: trail/views.py:210
 msgid "Elevation"
 msgstr ""
 
-#: trail/views.py:176
+#: trail/views.py:238
 msgid "Speed"
 msgstr ""
 
-#: trail/views.py:185
+#: trail/views.py:247
 msgid "Heart rate"
 msgstr ""
 
-#: trail/views.py:194
+#: trail/views.py:256
 msgid "Cadence"
 msgstr ""
 
-#: trail/views.py:202
+#: trail/views.py:264
 msgid "Temperature"
 msgstr ""
 
-#: trail/views.py:288
+#: trail/views.py:353
 msgid "Track index is out of range"
 msgstr ""
