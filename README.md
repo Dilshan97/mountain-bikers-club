@@ -29,7 +29,6 @@ It's not a mistake!
 
 ## Stay In Touch
 - [Mastodon](https://mastodon.social/@cedeber)
-- [Facebook](https://fb.me/mountainbikersclub)
 
 ## Contribution
 
