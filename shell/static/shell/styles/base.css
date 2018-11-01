@@ -171,10 +171,10 @@
     border: 1px solid var(--blue);
     border-radius: 3px;
     color: var(--blue);
-    padding: 8px 10px;
     margin: 0 5px;
     line-height: 20px;
     cursor: pointer;
+    padding: 8px 10px;
 }
 
 .mini-button svg {

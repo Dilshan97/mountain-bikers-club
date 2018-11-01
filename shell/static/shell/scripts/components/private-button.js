@@ -1,39 +1,40 @@
-import dom from '../library/tagged-dom.js';
+import dom from "../library/tagged-dom.js";
+import anime from "../vendor/anime.js";
 
 export default class PrivateButton extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({ mode: 'open' });
+        this.shadow = this.attachShadow({ mode: "open" });
         this.url = this.dataset.url;
         this.activeText = this.dataset.active;
         this.inactiveText = this.dataset.inactive;
+        this.initialStatus = JSON.parse(this.dataset.initialStatus || "undefined");
     }
 
     connectedCallback() {
         const partial = dom`
             ${styles}
-            <svg width="20" height="20" viewBox="0 0 20 20" >
+            <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true">
                 <g fill="currentColor">
-                    <path d="M13,17.5c0,0.276 -0.224,0.5 -0.5,0.5l-10,0c-0.276,0 -0.5,-0.224 -0.5,-0.5l0,-8c0,-0.276 0.224,-0.5 0.5,-0.5l10,0c0.276,0 0.5,0.224 0.5,0.5l0,8Zm-0.5,-9.5l-10,0c-0.827,0 -1.5,0.673 -1.5,1.5l0,8c0,0.827 0.673,1.5 1.5,1.5l10,0c0.827,0 1.5,-0.673 1.5,-1.5l0,-8c0,-0.827 -0.673,-1.5 -1.5,-1.5"></path>
-                    <path class="unlock" d="M14.5,1c-2.481,0 -4.5,2.019 -4.5,4.5l0,2.5l1,0l0,-2.5c0,-1.93 1.57,-3.5 3.5,-3.5c1.93,0 3.5,1.57 3.5,3.5l0,1c0,0.276 0.224,0.5 0.5,0.5c0.276,0 0.5,-0.224 0.5,-0.5l0,-1c0,-2.481 -2.019,-4.5 -4.5,-4.5"></path>
-                    <path class="lock" d="M4,8l0,-1.5c0,-1.93 1.57,-3.5 3.5,-3.5c1.93,0 3.5,1.57 3.5,3.5l0,1.5m1,0l0,-1.5c0,-2.481 -2.019,-4.5 -4.5,-4.5c-2.481,0 -4.5,2.019 -4.5,4.5l0,1.5"></path>
+                    <path d="M25,25.5c0,0.276 -0.224,0.5 -0.5,0.5l-10,0c-0.276,0 -0.5,-0.224 -0.5,-0.5l0,-8c0,-0.276 0.224,-0.5 0.5,-0.5l10,0c0.276,0 0.5,0.224 0.5,0.5l0,8Zm-0.5,-9.5l-10,0c-0.827,0 -1.5,0.673 -1.5,1.5l0,8c0,0.827 0.673,1.5 1.5,1.5l10,0c0.827,0 1.5,-0.673 1.5,-1.5l0,-8c0,-0.827 -0.673,-1.5 -1.5,-1.5"></path>
+                    <path class="lock" d="M19.5,10c-2.481,0 -4.5,2.019 -4.5,4.5l0,2.5l1,0l0,-2.5c0,-1.93 1.57,-3.5 3.5,-3.5c1.93,0 3.5,1.57 3.5,3.5l0,1.5c0,0.276 0.224,0.5 0.5,0.5c0.276,0 0.5,-0.224 0.5,-0.5l0,-1.5c0,-2.481 -2.019,-4.5 -4.5,-4.5"></path>
                 </g>
             </svg>
             <span :proxy="text">${dom``}</span>
         `;
 
-        const svg = partial.fragment.querySelector('svg');
+        const svg = partial.fragment.querySelector(".lock");
 
         partial.render(this.shadow)
             .then(proxy => {
-                if (this.dataset.status) {
-                    this.render(proxy, svg, JSON.parse(this.dataset.status));
+                if (typeof this.initialStatus === "boolean") {
+                    this.render(proxy, svg, this.initialStatus);
                 }
 
-                this.addEventListener('click', () => {
+                this.addEventListener("click", () => {
                     fetch(this.url, {
-                        method: 'PUT',
-                        credentials: 'include',
+                        method: "PUT",
+                        credentials: "include"
                     })
                         .then(response => response.json())
                         .then(data => this.render(proxy, svg, data.status));
@@ -42,13 +43,41 @@ export default class PrivateButton extends HTMLElement {
     }
 
     render(proxy, svg, status) {
-        if (typeof status === 'boolean') {
+        if (typeof status === "boolean") {
+            const timeline = anime.timeline();
+
             if (status) {
-                proxy.text = this.activeText;
-                svg.classList.add('is-private');
+                // private
+                timeline.add({
+                    targets: svg,
+                    transform: 'translate(0 -1) rotate(0 15 17)',
+                    duration: 550,
+                }).add({
+                    targets: svg,
+                    transform: 'translate(0 0) rotate(0 15 17)',
+                    duration: 250,
+                });
+
+                setTimeout(() => {
+                    this.classList.add('is-private');
+                    proxy.text = this.activeText;
+                }, 550);
             } else {
-                proxy.text = this.inactiveText;
-                svg.classList.remove('is-private');
+                // public
+                timeline.add({
+                    targets: svg,
+                    transform: 'translate(0 -1) rotate(0 15 17)',
+                    duration: 250,
+                }).add({
+                    targets: svg,
+                    transform: 'translate(0 -1) rotate(-25 15 17)',
+                    duration: 550,
+                });
+
+                setTimeout(() => {
+                    this.classList.remove('is-private');
+                    proxy.text = this.inactiveText;
+                }, 350);
             }
         }
     }
@@ -56,20 +85,29 @@ export default class PrivateButton extends HTMLElement {
 
 const styles = dom`
 <style>
-    svg {
-        margin-right: 3px;
+    :host {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid;
+        border-radius: 3px;
+        margin: 0 5px;
+        line-height: 20px;
+        cursor: pointer;
+        padding: 0 10px 0 0;
+    }
+
+    :host(:not(.is-private)) {
+        border-color: var(--green);
+        color: var(--green);
     }
     
-    .lock, .unlock {
-        transition: 350ms;
+    :host(.is-private) {
+        border-color: var(--orange);
+        color: var(--orange);
     }
     
-    svg.is-private .unlock {
-        opacity: 0;
-    }
-    
-    svg:not(.is-private) .lock {
-        opacity: 0;
+    :host(:active) {
+        background-color: var(--base04);
     }
 </style>
 `;

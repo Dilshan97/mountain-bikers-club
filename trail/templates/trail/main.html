@@ -44,9 +44,9 @@
                     <private-button data-url="{% url 'trail__private' trail.id %}"
                                   data-active="{% trans 'Private'|lower %}"
                                   data-inactive="{% trans 'Public'|lower %}"
-                                  data-status="{{ trail.is_private|lower }}"
-                                  class="mini-button" role="button">
-                        <a href="{% url 'trail__private' trail.id %}">
+                                  data-initial-status="{{ trail.is_private|lower }}"
+                                  role="button">
+                        <a href="{% url 'trail__private' trail.id %}" class="mini-button">
                             {% if trail.is_private == True %}
                                 <svg width="20" height="20" aria-hidden="true">
                                     <use xlink:href="#lock"></use>
