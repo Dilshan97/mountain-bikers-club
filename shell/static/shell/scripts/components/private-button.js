@@ -9,6 +9,7 @@ export default class PrivateButton extends HTMLElement {
         this.activeText = this.dataset.active;
         this.inactiveText = this.dataset.inactive;
         this.initialStatus = JSON.parse(this.dataset.initialStatus || "undefined");
+        this.loading = false;
     }
 
     connectedCallback() {
@@ -24,6 +25,7 @@ export default class PrivateButton extends HTMLElement {
         `;
 
         const svg = partial.fragment.querySelector(".lock");
+        let clickTimeout = 0;
 
         partial.render(this.shadow)
             .then(proxy => {
@@ -32,13 +34,24 @@ export default class PrivateButton extends HTMLElement {
                 }
 
                 this.addEventListener("click", () => {
+                    if (this.loading) {
+                        return;
+                    }
+
+                    this.loading = true;
+                    clearTimeout(clickTimeout);
+                    this.classList.add("is-active");
+                    clickTimeout = setTimeout(() => {
+                        this.classList.remove('is-active')
+                    }, 250);
+
                     fetch(this.url, {
                         method: "PUT",
                         credentials: "include"
                     })
                         .then(response => response.json())
                         .then(data => this.render(proxy, svg, data.status));
-                });
+                }, { passive: true });
             });
     }
 
@@ -80,6 +93,8 @@ export default class PrivateButton extends HTMLElement {
                 }, 350);
             }
         }
+
+        setTimeout(() => this.loading = false, 800);
     }
 }
 
@@ -94,6 +109,30 @@ const styles = dom`
         line-height: 20px;
         cursor: pointer;
         padding: 0 10px 0 0;
+        position: relative;
+    }
+
+    :host::after {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: -1;
+        background: currentColor;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        will-change: opacity;
+        transition: opacity 150ms;
+    }
+
+    :host(:hover)::after {
+        opacity: 0.13;
+    }
+
+    :host(.is-active)::after {
+        opacity: 0.3;
     }
 
     :host(:not(.is-private)) {
@@ -104,10 +143,6 @@ const styles = dom`
     :host(.is-private) {
         border-color: var(--orange);
         color: var(--orange);
-    }
-    
-    :host(:active) {
-        background-color: var(--base04);
     }
 </style>
 `;
