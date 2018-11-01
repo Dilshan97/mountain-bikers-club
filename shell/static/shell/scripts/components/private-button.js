@@ -29,10 +29,7 @@ export default class PrivateButton extends HTMLElement {
 
         partial.render(this.shadow)
             .then(proxy => {
-                if (typeof this.initialStatus === "boolean") {
-                    this.render(proxy, svg, this.initialStatus);
-                }
-
+                this.render(proxy, svg, this.initialStatus);
                 this.addEventListener("click", () => {
                     if (this.loading) {
                         return;
