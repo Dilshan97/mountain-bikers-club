@@ -100,7 +100,7 @@ const styles = dom`
     :host {
         display: inline-flex;
         align-items: center;
-        border: 1px solid;
+        /*border: 1px solid;*/
         border-radius: 3px;
         margin: 0 5px;
         line-height: 20px;
@@ -115,6 +115,7 @@ const styles = dom`
         position: absolute;
         z-index: -1;
         background: currentColor;
+        border-radius: 3px;
         opacity: 0;
         top: 0;
         left: 0;
@@ -138,8 +139,8 @@ const styles = dom`
     }
     
     :host(.is-private) {
-        border-color: var(--orange);
-        color: var(--orange);
+        border-color: var(--violet);
+        color: var(--violet);
     }
 </style>
 `;

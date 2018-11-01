@@ -70,6 +70,7 @@ def edit(request, trail_id):
 
 
 @login_required
+@csrf_exempt
 def favorite(request, trail_id):
     current_user = request.user
     current_user_favorite_trails = current_user.favorite_trails.all()
@@ -83,7 +84,10 @@ def favorite(request, trail_id):
         current_user.favorite_trails.add(trail)
 
     if request.method == 'PUT':
-        return JsonResponse({'status': is_favorite})
+        return JsonResponse({
+            'status': is_favorite,
+            'count': len(trail.favorite_by.all()),
+        })
     else:
         return HttpResponseRedirect(reverse('trail__main', args=[trail.id]))
 
