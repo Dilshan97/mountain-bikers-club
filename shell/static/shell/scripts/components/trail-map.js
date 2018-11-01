@@ -1,5 +1,5 @@
-import { Browser, tileLayer, polyline, map } from '../leaflet/leaflet.min.js';
-import '../leaflet/fullscreen.js';
+import { Browser, tileLayer, polyline, map } from '../vendor/leaflet.min.js';
+import '../vendor/leaflet.fullscreen.js';
 
 export default class Map extends HTMLElement {
     constructor() {
