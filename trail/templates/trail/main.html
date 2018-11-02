@@ -42,6 +42,26 @@
                         Published by <a href="{{ link }}">@{{ user }}</a> on {{ date }}.
                     {% endblocktrans %}
                 </span>
+                {% if user.is_authenticated %}
+                    <favorite-button data-url="{% url 'trail__favorite' trail.id %}"
+                                     data-initial-status="{{ is_favorite|lower }}"
+                                     data-initial-count="{{ trail.favorite_by.all|length }}">
+                        <a href="{% url 'trail__favorite' trail.id %}"
+                           class="mini-button {% if is_favorite %}is-favorite{% endif %}">
+                            <svg width="20" height="20">
+                                <use xlink:href="#heart"></use>
+                            </svg>
+                            {{ trail.favorite_by.all|length }}
+                        </a>
+                    </favorite-button>
+                {% else %}
+                    <div class="trail__favorite {% if is_favorite %}is-favorite{% endif %}">
+                        <svg width="20" height="20">
+                            <use xlink:href="#heart"></use>
+                        </svg>
+                        {{ trail.favorite_by.all|length }}
+                    </div>
+                {% endif %}
                 {% if user.is_authenticated and trail.author == user %}
                     <private-button data-url="{% url 'trail__private' trail.id %}"
                                     data-active="{% trans 'Private'|lower %}"
@@ -62,26 +82,6 @@
                             {% endif %}
                         </a>
                     </private-button>
-                {% endif %}
-                {% if user.is_authenticated %}
-                    <favorite-button data-url="{% url 'trail__favorite' trail.id %}"
-                                     data-initial-status="{{ is_favorite|lower }}"
-                                     data-initial-count="{{ trail.favorite_by.all|length }}">
-                        <a href="{% url 'trail__favorite' trail.id %}"
-                           class="mini-button {% if is_favorite %}is-favorite{% endif %}">
-                            <svg width="20" height="20">
-                                <use xlink:href="#heart"></use>
-                            </svg>
-                            {{ trail.favorite_by.all|length }}
-                        </a>
-                    </favorite-button>
-                {% else %}
-                    <div class="trail__favorite {% if is_favorite %}is-favorite{% endif %}">
-                        <svg width="20" height="20">
-                            <use xlink:href="#heart"></use>
-                        </svg>
-                        {{ trail.favorite_by.all|length }}
-                    </div>
                 {% endif %}
             </p>
             {% if user.is_authenticated and user == trail.author and trail.is_draft is False %}
