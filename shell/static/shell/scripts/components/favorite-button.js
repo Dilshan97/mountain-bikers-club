@@ -6,7 +6,7 @@ export default class PrivateButton extends HTMLElement {
         super();
         this.shadow = this.attachShadow({ mode: "open" });
         this.url = this.dataset.url;
-        this.initialStatus = JSON.parse(this.dataset.initialStatus || "undefined");
+        this.initialStatus = JSON.parse(this.dataset.initialStatus || "null");
         this.initialCount = JSON.parse(this.dataset.initialCount || "0");
         this.loading = false;
     }

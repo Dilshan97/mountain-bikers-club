@@ -8,7 +8,7 @@ export default class PrivateButton extends HTMLElement {
         this.url = this.dataset.url;
         this.activeText = this.dataset.active;
         this.inactiveText = this.dataset.inactive;
-        this.initialStatus = JSON.parse(this.dataset.initialStatus || "undefined");
+        this.initialStatus = JSON.parse(this.dataset.initialStatus || "null");
         this.loading = false;
     }
 
