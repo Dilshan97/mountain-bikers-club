@@ -5,13 +5,14 @@ export default class PrivateButton extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: "open" });
-        this.url = this.dataset.url;
-        this.initialStatus = JSON.parse(this.dataset.initialStatus || "null");
-        this.initialCount = JSON.parse(this.dataset.initialCount || "0");
         this.loading = false;
     }
 
     connectedCallback() {
+        this.url = this.dataset.url;
+        this.initialStatus = JSON.parse(this.dataset.initialStatus || "null");
+        this.initialCount = JSON.parse(this.dataset.initialCount || "0");
+
         const partial = dom`
             ${styles}
             <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true">
