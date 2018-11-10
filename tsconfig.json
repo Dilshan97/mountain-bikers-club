@@ -14,15 +14,14 @@
       "esnext",
       "scripthost"
     ],
-    "module": "es2015",
-    "removeComments": true,
-    "sourceMap": true,
+    "module": "esnext",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitThis": false,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false
   },
   "include": [
     "shell/static/shell/scripts/**/*"
