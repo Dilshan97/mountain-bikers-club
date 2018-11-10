@@ -9,7 +9,7 @@ export default class PrivateButton extends HTMLElement {
     }
 
     connectedCallback() {
-        this.url = this.dataset.url;
+        this.url = this.dataset.url || "";
         this.activeText = this.dataset.active;
         this.inactiveText = this.dataset.inactive;
         this.initialStatus = JSON.parse(this.dataset.initialStatus || "null");
