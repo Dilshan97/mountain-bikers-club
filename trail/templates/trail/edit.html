@@ -40,6 +40,14 @@
                     <ul>
                         {% tpl_trail_preview trail %}
                     </ul>
+                    <p><!-- empty --></p>
+                    {% if user.is_authenticated and user == trail.author %}
+                        <div class="is-right">
+                            {% trans 'Delete trail' as button_label %}
+                            {% url 'trail__delete' trail.id as button_link %}
+                            {% tpl_button button_label button_link class='is-danger' %}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
