@@ -62,7 +62,7 @@ def edit(request, slug):
         raise Http404()
 
     if request.method == 'POST':
-        form = UserProfileForm(data=request.POST, instance=current_user)
+        form = UserProfileForm(data=request.POST, files=request.FILES, instance=current_user)
 
         if form.is_valid():
             form.save()

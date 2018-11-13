@@ -45,10 +45,11 @@ class UserProfileForm(forms.ModelForm):
             self.fields[field].widget.attrs['spellcheck'] = 'false'
             self.fields[field].widget.attrs['autocomplete'] = field
         self.fields['first_name'].widget.attrs['autofocus'] = 'true'
+        self.fields['biography'].widget = forms.widgets.Textarea(attrs={'rows': 3})
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email')
+        fields = ('username', 'first_name', 'last_name', 'avatar', 'biography', 'email')
 
     def clean_username(self):
         username = self.cleaned_data['username']

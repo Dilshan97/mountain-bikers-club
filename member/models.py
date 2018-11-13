@@ -5,7 +5,13 @@ from django.utils.translation import gettext_lazy as _
 from trail.models import Trail
 
 
+def user_directory_path(instance, filename):
+    return 'members/{0}/{1}'.format(instance.id, filename)
+
+
 class User(AbstractUser):
+    avatar = models.ImageField(_('Avatar'), upload_to=user_directory_path, help_text=_('Public avatar.'), null=True, blank=True)
+    biography = models.CharField(_('Biography'), max_length=255, help_text=_('Tell us about yourself in fewer than 250 characters.'), blank=True)
     email = models.EmailField(
         _('email address'),
         unique=True,

@@ -37,6 +37,17 @@
                 </div>
                 <p><!-- empty --></p>
             {% endif %}
+            {% if user.avatar %}
+                <picture class="avatar is-big">
+                    <img class="avatar__image" src="{{ user.avatar.url }}" width="{{ user.avatar.width }}">
+                </picture>
+                <p><!-- empty --></p>
+            {% endif %}
+            {% if user.biography %}
+                <p>
+                    {{ user.biography }}
+                </p>
+            {% endif %}
             <h2>{% trans 'Trails' %}</h2>
             <ul class="o-flex has-gutter is-multiline">
                 {% for trail in member_trails %}
