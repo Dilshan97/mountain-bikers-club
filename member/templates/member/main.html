@@ -37,15 +37,15 @@
                 </div>
                 <p><!-- empty --></p>
             {% endif %}
-            {% if user.avatar %}
+            {% if member.avatar %}
                 <picture class="avatar is-big">
-                    <img class="avatar__image" src="{{ user.avatar.url }}" width="{{ user.avatar.width }}">
+                    <img class="avatar__image" src="{{ member.avatar.url }}" width="{{ member.avatar.width }}" height="{{ member.avatar.height }}">
                 </picture>
                 <p><!-- empty --></p>
             {% endif %}
-            {% if user.biography %}
+            {% if member.biography %}
                 <p>
-                    {{ user.biography }}
+                    {{ member.biography }}
                 </p>
             {% endif %}
             <h2>{% trans 'Trails' %}</h2>
