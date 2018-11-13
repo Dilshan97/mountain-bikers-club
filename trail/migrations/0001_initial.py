@@ -26,8 +26,8 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=255, null=True, verbose_name='Title')),
                 ('description', models.TextField(blank=True, null=True, verbose_name='Description')),
                 ('tracks', django.contrib.postgres.fields.jsonb.JSONField(null=True)),
-                ('file', models.FileField(upload_to=trail.models.user_directory_path, validators=[django.core.validators.FileExtensionValidator(['gpx'])], verbose_name='GPX file')),
-                ('thumbnail', models.FileField(null=True, upload_to=trail.models.user_directory_path)),
+                ('file', models.FileField(upload_to=trail.models.trail_directory_path, validators=[django.core.validators.FileExtensionValidator(['gpx'])], verbose_name='GPX file')),
+                ('thumbnail', models.FileField(null=True, upload_to=trail.models.trail_directory_path)),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={

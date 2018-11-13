@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='trail',
             name='hero',
-            field=models.FileField(null=True, upload_to=trail.models.user_directory_path),
+            field=models.FileField(null=True, upload_to=trail.models.trail_directory_path),
         ),
         migrations.AddField(
             model_name='trail',

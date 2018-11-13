@@ -3,7 +3,7 @@
 - The application runs with Django, Celery, PostgreSQL and Redis.
 - The maps are build with Leaflet and OpenStreetMap.
 - The graphs are build thanks to Bokeh.
-- The JavaScript and CSS are built on top of [my frontend library](https://github.com/cedeber/frontend-library).
+- The JavaScript and CSS are built on top of [my frontend library](https://github.com/cedeber/eukolia).
 
 ## Browsers support
 Mountain Bikers Club doesn't support legacy browsers.

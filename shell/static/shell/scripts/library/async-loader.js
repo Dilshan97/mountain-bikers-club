@@ -1,3 +1,7 @@
+/*!
+ * Eukolía - Async Loader
+ * https://github.com/cedeber/eukolia
+ */
 const urlList = new Set();
 let loadJSPromise = Promise.resolve();
 let loadCSSPromise = Promise.resolve();
