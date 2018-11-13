@@ -1,3 +1,7 @@
+/*!
+ * Eukolía - Tagged DOM
+ * https://github.com/cedeber/eukolia
+ */
 export default function dom(strings, ...expressions) {
     const template = document.createElement("template");
     const tagPromise = promiseTagger();
