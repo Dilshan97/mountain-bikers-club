@@ -62,5 +62,7 @@ class UserProfileForm(forms.ModelForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         if commit:
+            if user.avatar:
+                user.resize_avatar()
             user.save()
         return user
