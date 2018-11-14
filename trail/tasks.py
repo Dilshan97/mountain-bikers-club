@@ -1,4 +1,4 @@
-import io
+from io import BytesIO
 
 from django.urls import reverse
 from django.utils.translation import gettext as _
@@ -31,8 +31,8 @@ def create_staticmaps(trail_id, base_uri):
         image_thumbnail = static_thumbnail.render()
         image_hero = static_hero.render()
 
-        file_thumbnail = io.BytesIO(b'')
-        file_hero = io.BytesIO(b'')
+        file_thumbnail = BytesIO()
+        file_hero = BytesIO()
 
         image_thumbnail.save(file_thumbnail, format='JPEG', optimize=True, progressive=True)
         image_hero.save(file_hero, format='JPEG', optimize=True, progressive=True)
