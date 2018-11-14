@@ -26,8 +26,8 @@ class Trail(models.Model):
 
     # Files
     file = models.FileField(_('GPX file'), upload_to=trail_directory_path, validators=[FileExtensionValidator(['gpx'])])
-    thumbnail = models.FileField(upload_to=trail_directory_path, null=True)
-    hero = models.FileField(upload_to=trail_directory_path, null=True)
+    thumbnail = models.ImageField(upload_to=trail_directory_path, null=True)
+    hero = models.ImageField(upload_to=trail_directory_path, null=True)
 
     class Meta:
         ordering = ['-pub_date', 'name']
