@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-13 16:29+0000\n"
+"POT-Creation-Date: 2018-11-14 07:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,7 +108,7 @@ msgstr ""
 msgid "Personal info"
 msgstr ""
 
-#: member/admin.py:16 member/templates/member/main.html:40
+#: member/admin.py:16 member/templates/member/main.html:51
 msgid "Trails"
 msgstr ""
 
@@ -120,27 +120,43 @@ msgstr ""
 msgid "Permissions"
 msgstr ""
 
-#: member/forms.py:34 member/forms.py:57
+#: member/forms.py:34 member/forms.py:58
 msgid "This username is forbidden."
 msgstr ""
 
-#: member/models.py:10
-msgid "email address"
+#: member/models.py:16
+msgid "Avatar"
 msgstr ""
 
-#: member/models.py:13
-msgid "Required. No bullshit, I promise."
+#: member/models.py:16
+msgid "Public avatar."
 msgstr ""
 
-#: member/models.py:15
-msgid "A user with that email address already exists."
+#: member/models.py:17
+msgid "Biography"
+msgstr ""
+
+#: member/models.py:17
+msgid "Tell us about yourself in fewer than 250 characters."
 msgstr ""
 
 #: member/models.py:19
+msgid "email address"
+msgstr ""
+
+#: member/models.py:22
+msgid "Required. No bullshit, I promise."
+msgstr ""
+
+#: member/models.py:24
+msgid "A user with that email address already exists."
+msgstr ""
+
+#: member/models.py:28
 msgid "Premium member"
 msgstr ""
 
-#: member/models.py:20
+#: member/models.py:29
 msgid "Premium until"
 msgstr ""
 
@@ -184,16 +200,16 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: member/templates/member/main.html:48
+#: member/templates/member/main.html:59
 msgid "Favorites"
 msgstr ""
 
-#: member/templates/member/main.html:59
+#: member/templates/member/main.html:70
 #: member/templates/member/password_change.html:4
 msgid "Change password"
 msgstr ""
 
-#: member/templates/member/main.html:64
+#: member/templates/member/main.html:75
 msgid "Delete my account"
 msgstr ""
 

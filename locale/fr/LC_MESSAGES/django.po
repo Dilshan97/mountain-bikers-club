@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-13 16:29+0000\n"
+"POT-Creation-Date: 2018-11-14 07:30+0000\n"
 "PO-Revision-Date: 2018-08-22 15:06+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -110,7 +110,7 @@ msgstr "S'enregistrer"
 msgid "Personal info"
 msgstr "Infos personelles"
 
-#: member/admin.py:16 member/templates/member/main.html:40
+#: member/admin.py:16 member/templates/member/main.html:51
 msgid "Trails"
 msgstr "Trails"
 
@@ -122,27 +122,43 @@ msgstr "Dates importantes"
 msgid "Permissions"
 msgstr "Permissions"
 
-#: member/forms.py:34 member/forms.py:57
+#: member/forms.py:34 member/forms.py:58
 msgid "This username is forbidden."
 msgstr "Ce nom d'utilisateur·trice est interdit."
 
-#: member/models.py:10
+#: member/models.py:16
+msgid "Avatar"
+msgstr "Avatar"
+
+#: member/models.py:16
+msgid "Public avatar."
+msgstr "Avatar public."
+
+#: member/models.py:17
+msgid "Biography"
+msgstr "Biographie"
+
+#: member/models.py:17
+msgid "Tell us about yourself in fewer than 250 characters."
+msgstr "Parlez-nous de vous en moins de 250 caractères."
+
+#: member/models.py:19
 msgid "email address"
 msgstr "adresse électronique"
 
-#: member/models.py:13
+#: member/models.py:22
 msgid "Required. No bullshit, I promise."
 msgstr "Requis. Pas de conneries, promis."
 
-#: member/models.py:15
+#: member/models.py:24
 msgid "A user with that email address already exists."
 msgstr "Un·e utilisateur·trice avec cette adresse électronique existe déjà."
 
-#: member/models.py:19
+#: member/models.py:28
 msgid "Premium member"
 msgstr "Membre Premium"
 
-#: member/models.py:20
+#: member/models.py:29
 msgid "Premium until"
 msgstr "Premium jusqu'au"
 
@@ -186,16 +202,16 @@ msgstr "Membre depuis le %(date)s."
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: member/templates/member/main.html:48
+#: member/templates/member/main.html:59
 msgid "Favorites"
 msgstr "Favoris"
 
-#: member/templates/member/main.html:59
+#: member/templates/member/main.html:70
 #: member/templates/member/password_change.html:4
 msgid "Change password"
 msgstr "Changer de mot de passe"
 
-#: member/templates/member/main.html:64
+#: member/templates/member/main.html:75
 msgid "Delete my account"
 msgstr "Supprimer mon compte"
 
