@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm as DefaultUserCreationForm
 from django.utils.translation import gettext_lazy as _
 
-from .models import User
+from .models import User, resize_avatar
 
 
 forbidden_username = [
@@ -63,6 +63,6 @@ class UserProfileForm(forms.ModelForm):
         user = super().save(commit=False)
         if commit:
             if user.avatar:
-                user.resize_avatar()
+                user.avatar = resize_avatar(user.avatar)
             user.save()
         return user
