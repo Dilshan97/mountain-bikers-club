@@ -1,4 +1,5 @@
 import math
+import os
 import xml.etree.ElementTree as ET
 import re
 from io import StringIO
@@ -252,6 +253,17 @@ def parse(xml):
         average_moving_speed = (moving_distance / moving_time) * 3600. / 1000. if moving_time > 0 else 0.
         distance = parsed_points[-1]['total_distance']
 
+        weather = None
+
+        try:
+            r = requests.get("https://api.darksky.net/forecast/{}/{},{},{}?exclude=flags,hourly,daily&units=ca".format(
+                os.environ.get('DARK_SKY_API_KEY'), parsed_points[0]['latitude'], parsed_points[0]['longitude'],
+                parse_time(start_datetime).isoformat()), timeout=60)
+            data = r.json() if r.status_code == 200 else None
+            weather = data['currently'] if data and data['currently'] else None
+        except:
+            pass
+
         if start_datetime and end_datetime:
             parsed_start_datetime = parse_time(start_datetime)
             parsed_end_datetime = parse_time(end_datetime)
@@ -277,6 +289,7 @@ def parse(xml):
             'average_speed': average_speed,
             'average_moving_speed': average_moving_speed,
             'points': parsed_points,
+            'icon': weather['icon'] if weather else None,
         })
 
     return name, description, parsed_tracks
