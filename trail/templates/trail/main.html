@@ -96,7 +96,7 @@
                 {% with trail.tracks|first as track %}
                     <div>
                         <ul class="trail__statistics-grid">
-                            <li class="is-left" style="grid-column:1/3">
+                            <li class="is-left">
                                 <svg width="20" height="20" class="trail__icon" aria-hidden="true">
                                     <use xlink:href="#home"></use>
                                 </svg>
@@ -115,6 +115,13 @@
                                 {% else %}
                                     {{ track.start_datetime|parse_time|date:"SHORT_DATE_FORMAT"|default:'n/a' }}
                                 {% endif %}
+                            </li>
+                            <li class="is-left">
+                                <svg width="20" height="20" class="trail__icon" aria-hidden="true">
+                                    <use xlink:href="#{{ track.icon }}"></use>
+                                </svg>
+                                <span class="is-visually-hidden">{% trans 'Weather' %}:</span>
+                                {{ track.temperature|default:'n/a' }}°C
                             </li>
                             <li class="is-left">
                                 <svg width="20" height="20" class="trail__icon" aria-hidden="true">
@@ -163,10 +170,10 @@
                             </li>
                             <li class="is-left">
                                 <svg width="20" height="20" class="trail__icon" aria-hidden="true">
-                                    <use xlink:href="#{{ track.icon }}"></use>
+                                    <use xlink:href="#speed-fast"></use>
                                 </svg>
-                                <span class="is-visually-hidden">{% trans 'Weather' %}:</span>
-                                {{ track.temperature|default:'n/a' }}°C
+                                <span class="is-visually-hidden">{% trans 'Maximum speed' %}:</span>
+                                {{ track.max_speed|floatformat:"1"|default:'n/a' }}km/h
                             </li>
                         </ul>
                     </div>
