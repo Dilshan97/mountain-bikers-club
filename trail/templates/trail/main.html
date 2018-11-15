@@ -105,7 +105,7 @@
                             </li>
                             <li class="is-left">
                                 <svg width="20" height="20" class="trail__icon" aria-hidden="true">
-                                    <use xlink:href="#{{ track.icon|default:'calendar' }}"></use>
+                                    <use xlink:href="#calendar"></use>
                                 </svg>
                                 <span class="is-visually-hidden">{% trans 'Start date and time' %}:</span>
                                 {% if trail.timezone %}
@@ -163,10 +163,10 @@
                             </li>
                             <li class="is-left">
                                 <svg width="20" height="20" class="trail__icon" aria-hidden="true">
-                                    <use xlink:href="#speed-fast"></use>
+                                    <use xlink:href="#{{ track.icon }}"></use>
                                 </svg>
-                                <span class="is-visually-hidden">{% trans 'Maximum speed' %}:</span>
-                                {{ track.max_speed|floatformat:"1"|default:'n/a' }}km/h
+                                <span class="is-visually-hidden">{% trans 'Weather' %}:</span>
+                                {{ track.temperature|default:'n/a' }}°C
                             </li>
                         </ul>
                     </div>

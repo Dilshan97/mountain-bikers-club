@@ -290,6 +290,7 @@ def parse(xml):
             'average_moving_speed': average_moving_speed,
             'points': parsed_points,
             'icon': weather['icon'] if weather else None,
+            'temperature': int(round(float(weather['temperature']), 0)) if weather else None
         })
 
     return name, description, parsed_tracks
