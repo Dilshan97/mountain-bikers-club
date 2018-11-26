@@ -135,22 +135,24 @@ def main(request, trail_id):
 
     def grade_color(val):
         value = abs(val)
-        color = '#f2777a'
+        color = '#2d2d2d'
 
-        if value < 6:
+        if value < 5:
             color = '#99cc99'
-        elif value < 12:
+        elif value < 9:
             color = '#ffcc66'
-        elif value < 18:
+        elif value < 12:
             color = '#f99157'
+        elif value < 16:
+            color = '#f2777a'
 
         return color
 
     if trail.tracks is not None and len(trail.tracks) > 0:
         for track in trail.tracks:
             x_distance = list(map(lambda p: p['total_distance'], track['points']))
+            bar_distance = list(map(lambda p: p['distance'] / 1000., track['points']))  # FIXME
             y_elevation = list(map(lambda p: p['elevation'], track['points']))
-            y_elevation_bottom = list(map(lambda p: p['elevation'] - 40, track['points']))
             y_grade = list(map(lambda p: p['grade'], track['points']))
             y_grade_color = list(map(lambda p: grade_color(p['grade']), track['points']))
             y_speed = list(map(lambda p: p['speed'], track['points']))
@@ -160,8 +162,8 @@ def main(request, trail_id):
 
             source = ColumnDataSource(data=dict(
                 distance=x_distance,
+                bar_distance=bar_distance,
                 elevation=y_elevation,
-                elevation_bottom=y_elevation_bottom,
                 grade=y_grade,
                 grade_color=y_grade_color,
                 speed=y_speed,
@@ -170,7 +172,7 @@ def main(request, trail_id):
                 cadence=y_cadence
             ))
 
-            # tools = 'xpan,xzoom_in,xzoom_out,reset,crosshair'
+            # tools = 'xpan,box_zoom,xzoom_in,xzoom_out,reset,crosshair'
             tools = 'crosshair'
 
             track_plot = figure(
@@ -208,10 +210,11 @@ def main(request, trail_id):
             user_plot.y_range = track_plot.y_range
             temperature_plot.y_range = track_plot.y_range
 
-            end_patch = min(y_elevation) - 100
-            x_patch = [x_distance[0]] + x_distance + [x_distance[-1]]
-            y_patch = [end_patch] + y_elevation + [end_patch]
-            track_plot.patch(x_patch, y_patch, legend=_('Elevation'), color='#515151', alpha=0.8)
+            # end_patch = min(y_elevation) - 100
+            # x_patch = [x_distance[0]] + x_distance + [x_distance[-1]]
+            # y_patch = [end_patch] + y_elevation + [end_patch]
+            # track_plot.patch(x_patch, y_patch, legend=_('Elevation'), color='#515151', alpha=0.8)
+
             elevation_line = user_plot.line('distance', 'elevation', source=source, line_width=1, color='#747369', alpha=0.85)
             temperature_plot.line('distance', 'elevation', source=source, line_width=1, color='#747369', alpha=0.85)
 
@@ -222,17 +225,18 @@ def main(request, trail_id):
             temperature_plot.yaxis[0].formatter = PrintfTickFormatter(format='%5d m')
             temperature_plot.yaxis[0].major_label_text_color = '#a09f93'
 
-            # Grade
-            track_plot.vbar(x='distance', bottom='elevation_bottom', top='elevation', source=source, color='grade_color', width=0.001, alpha=0.6)
-
             tooltips = [
                ('distance', '@distance{%4.2f km}'),
                ('elevation', '@elevation{%5d m}'),
                ('grade', '@grade{00} %'),
             ]
 
+            # Grade
+            track_plot.vbar(x='distance', bottom=0, top='elevation', source=source, color='grade_color', width='bar_distance')
+
             y_index = 1
 
+            # Speed
             if max(y_speed) > 0:
                 user_plot.extra_y_ranges['speed'] = Range1d(start=min(y_speed), end=max(y_speed) + 5)
                 user_plot.add_layout(LinearAxis(y_range_name='speed'), 'left')
@@ -245,6 +249,7 @@ def main(request, trail_id):
                 tooltips.append(('speed', '@speed{%3.1f km/h}'))
                 y_index = y_index + 1
 
+            # Heart Rate
             if max(y_heart_rate) > 0:
                 user_plot.extra_y_ranges['heart_rate'] = Range1d(start=min(y_heart_rate) - 10, end=max(y_heart_rate) + 10)
                 user_plot.add_layout(LinearAxis(y_range_name='heart_rate'), 'right')
@@ -253,6 +258,7 @@ def main(request, trail_id):
                 user_plot.yaxis[y_index].major_label_text_color = '#f2777a'
                 tooltips.append(('heart_rate', '@heart_rate{%3d bpm}'))
 
+            # Cadence
             if max(y_cadence) > 0:
                 user_plot.extra_y_ranges['cadence'] = Range1d(start=min(y_cadence) - 10, end=max(y_cadence) + 10)
                 user_plot.add_layout(LinearAxis(y_range_name='cadence'), 'right')
@@ -262,6 +268,7 @@ def main(request, trail_id):
                 user_plot.yaxis[y_index].major_label_text_color = '#cc99cc'
                 tooltips.append(('cadence', '@cadence{%3d}'))
 
+            # Temperature
             if max(y_temperature) > 0:
                 temperature_plot.extra_y_ranges['temperature'] = Range1d(start=min(y_temperature) - 3, end=max(y_temperature) + 3)
                 temperature_plot.add_layout(LinearAxis(y_range_name='temperature'), 'left')
