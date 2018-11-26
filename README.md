@@ -41,7 +41,7 @@ Thank you to all [the people who already contributed to Mountain Bikers Club](ht
 The hosting on Heroku and DigitalOcean are not free. If you want to support the development
 of the app, you can send me some money via Buy Me A Coffee.
 
-[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/cedeber)
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/cedeber)
 
 
 ## License
