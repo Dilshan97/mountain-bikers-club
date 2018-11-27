@@ -309,8 +309,6 @@ body { font-size: var(--default-font-size); }
 [class*="o-flex"] > .cell-1of4 { flex-grow: 0; flex-shrink: 0; flex-basis: calc(100% / 4); }
 [class*="o-flex"] > .cell-3of4 { flex-grow: 0; flex-shrink: 0; flex-basis: calc(100% / 4 * 3); }
 
-/* TODO: Responsive media queries */
-
 
 /* --- Alignment -- */
 
