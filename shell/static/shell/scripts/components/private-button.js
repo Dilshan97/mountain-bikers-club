@@ -135,13 +135,13 @@ const styles = dom`
     }
 
     :host(:not(.is-private)) {
-        border-color: var(--green);
-        color: var(--green);
+        border-color: hsl(var(--green));
+        color: hsl(var(--green));
     }
     
     :host(.is-private) {
-        border-color: var(--violet);
-        color: var(--violet);
+        border-color: hsl(var(--violet));
+        color: hsl(var(--violet));
     }
 </style>
 `;

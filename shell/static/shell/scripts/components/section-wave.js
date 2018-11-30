@@ -13,7 +13,7 @@ export default class Wave extends HTMLElement {
                 :host {
                     display: block;
                     width: 100%;
-                    height: ${this.height || 'var(--section-margin-height)'};
+                    height: ${this.height || '6.667vw'};
                     border-radius: 0 0 65% 55%/0 0 100% 60%;
                     background: ${this.color};
                     transform: scale(1.3, 2.7) rotate(-0.3deg);
@@ -22,6 +22,9 @@ export default class Wave extends HTMLElement {
                 }
             </style>
         `;
+
+        // FIXME It should work with the shadow DOM
+        this.style.backgroundColor = this.color;
 
         this.setAttribute('aria-hidden', String(true));
     }

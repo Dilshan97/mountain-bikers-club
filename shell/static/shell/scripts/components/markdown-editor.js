@@ -78,8 +78,8 @@ const styles = dom`
     
     .tiny-button {
         display: inline-block;
-        background: var(--base06);
-        border: solid 1px var(--base07);
+        background: hsl(var(--base06));
+        border: solid 1px hsl(var(--base07));
         border-radius: 1px;
         min-width: 44px;
         text-align: center;
@@ -91,7 +91,7 @@ const styles = dom`
     }
     
     .tiny-button:hover {
-        background: var(--base07);
+        background: hsl(var(--base07));
     }
 </style>
 `;

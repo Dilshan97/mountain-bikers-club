@@ -64,17 +64,17 @@
 }
 
 ::selection {
-    background-color: var(--base02);
+    background-color: hsl(var(--base02));
 }
 
 
 /* --- Support Bar --- */
 
 .support-bar {
-    background: var(--yellow);
+    background: hsl(var(--yellow));
     padding: 10px var(--page-gutter-width);
     font-size: 15px;
-    color: var(--base00);
+    color: hsl(var(--base00));
 }
 
 .support-bar p {
@@ -85,10 +85,10 @@
 /* --- Buttons --- */
 
 .button__outer {
-    --button-color: var(--blue);
+    --button-color: hsl(var(--blue));
 
     display: inline-block;
-    box-shadow: 0 0 0 2px var(--base00), 0 0 0 5px var(--button-color);
+    box-shadow: 0 0 0 2px hsl(var(--base00)), 0 0 0 5px var(--button-color);
     border-radius: 3px;
     line-height: 0;
 
@@ -97,32 +97,32 @@
 }
 
 .button__outer.is-secondary {
-    --button-color: var(--base04);
+    --button-color: hsl(var(--base04));
     opacity: 0.85;
 }
 
 .button__outer.is-success {
-    --button-color: var(--green);
+    --button-color: hsl(var(--green));
 }
 
 .button__outer.is-warning {
-    --button-color: var(--yellow);
+    --button-color: hsl(var(--yellow));
 }
 
 .button__outer.is-danger {
-    --button-color: var(--red);
+    --button-color: hsl(var(--red));
 }
 
 .button {
     position: relative;
     display: inline-block;
     text-align: center;
-    background: var(--base00);
+    background: hsl(var(--base00));
     border-radius: 3px;
     text-decoration: none;
     line-height: 4.8rem;
     font-size: 1.8rem;
-    color: var(--base07);
+    color: hsl(var(--base07));
     overflow: hidden;
     transform: translateZ(0);
     padding: 0 23px;
@@ -142,7 +142,7 @@
 }
 
 .is-danger .button {
-    background: hsla(359, 83%, 71%, 0.07);
+    background: hsla(var(--red), 0.07);
     color: var(--button-color);
 }
 
@@ -152,7 +152,7 @@
 
 .button:hover,
 .button:focus {
-    color: var(--base00);
+    color: hsl(var(--base00));
     outline: 0;
 }
 
@@ -168,9 +168,9 @@
 .mini-button {
     display: inline-flex;
     align-items: center;
-    border: 1px solid var(--blue);
+    border: 1px solid hsl(var(--blue));
     border-radius: 3px;
-    color: var(--blue);
+    color: hsl(var(--blue));
     margin: 0 5px;
     line-height: 20px;
     cursor: pointer;
@@ -185,7 +185,7 @@
 /* --- Header --- */
 
 .main-header {
-    color: var(--yellow);
+    color: hsl(var(--yellow));
     padding: 10px var(--page-gutter-width);
     position: relative;
 }
@@ -198,7 +198,7 @@
     width: 100%;
     height: 1px;
     opacity: .7;
-    background-image: linear-gradient(to right, var(--page-background) 5%, var(--yellow) 50%, var(--page-background) 95%);
+    background-image: linear-gradient(to right, var(--page-background) 5%, hsl(var(--yellow)) 50%, var(--page-background) 95%);
     transform: scale(2, 1);
 }
 
@@ -231,12 +231,12 @@
 }
 
 .main-header__menu__link {
-    color: var(--base07);
+    color: hsl(var(--base07));
     font-weight: 800;
 }
 
 .main-header__menu__link:not(.is-active):hover {
-    color: var(--base05);
+    color: hsl(var(--base05));
 }
 
 
@@ -244,8 +244,8 @@
 
 .main-footer {
     /* grid-row: -1; */
-    background: var(--base01);
-    color: var(--base03);
+    background: hsl(var(--base01));
+    color: hsl(var(--base03));
     padding: 0 var(--page-gutter-width) calc(var(--section-margin-height) / 2);
     overflow: hidden;
 }
@@ -263,7 +263,7 @@
 
 .django__form .errorlist,
 .django__form__list .errorlist {
-    color: var(--red);
+    color: hsl(var(--red));
     margin-bottom: 10px;
     font-size: 85%;
     padding-top: 5px;
@@ -303,14 +303,14 @@
 }
 
 .django__form__list input:-moz-ui-invalid {
-    border-color: var(--red);
+    border-color: hsl(var(--red));
     box-shadow: 0 0 0 2px #404040, 0 0 0 5px #f2777a4d;
 }
 
 .django__form__list input:focus,
 .django__form__list textarea:focus {
     outline: 0;
-    border-color: var(--blue);
+    border-color: hsl(var(--blue));
     box-shadow: 0 0 0 2px #404040, 0 0 0 5px #6699cc4d;
 }
 

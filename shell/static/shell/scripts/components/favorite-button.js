@@ -165,13 +165,13 @@ const styles = dom`
     }
 
     :host(:not(.is-favorite)) {
-        border-color: var(--blue);
-        color: var(--blue);
+        border-color: hsl(var(--blue));
+        color: hsl(var(--blue));
     }
     
     :host(.is-favorite) {
-        border-color: var(--red);
-        color: var(--red);
+        border-color: hsl(var(--red));
+        color: hsl(var(--red));
     }
 </style>
 `;
