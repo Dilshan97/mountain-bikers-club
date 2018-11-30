@@ -46,7 +46,7 @@ export default class PrivateButton extends HTMLElement {
             .then(proxy => {
                 this.render(proxy, svgHeart, svgLights, this.initialStatus, this.initialCount);
                 this.addEventListener("click", () => {
-                    if (this.loading) {
+                    if (this.loading || this.url == undefined) {
                         return;
                     }
 

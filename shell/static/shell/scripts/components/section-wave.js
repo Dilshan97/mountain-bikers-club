@@ -24,7 +24,7 @@ export default class Wave extends HTMLElement {
         `;
 
         // FIXME It should work with the shadow DOM
-        this.style.backgroundColor = this.color;
+        this.style.backgroundColor = this.color || null;
 
         this.setAttribute('aria-hidden', String(true));
     }
