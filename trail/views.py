@@ -9,6 +9,7 @@ from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.views.generic import DeleteView
 from django.views.decorators.csrf import csrf_exempt
+from django.template.defaultfilters import slugify
 from bokeh.plotting import figure, ColumnDataSource
 from bokeh.embed import components
 from bokeh.layouts import gridplot
@@ -108,6 +109,19 @@ def private(request, trail_id):
         return JsonResponse({'status': trail.is_private})
     else:
         return HttpResponseRedirect(reverse('trail__main', args=[trail.id]))
+
+
+@login_required
+def download(request, trail_id):
+    trail = get_object_or_404(Trail, pk=trail_id)
+
+    with trail.file.open(mode='rb') as file:
+        file_name = f'{trail.author}_{slugify(trail.name)}.gpx'
+        # TODO Change the file to update with the current name and description
+        response = HttpResponse(file, content_type='application/force-download')
+        response['Content-Disposition'] = f'attachment; filename="{file_name}"'
+
+        return response
 
 
 class TrailDelete(DeleteView):
@@ -226,9 +240,9 @@ def main(request, trail_id):
             temperature_plot.yaxis[0].major_label_text_color = '#a09f93'
 
             tooltips = [
-               ('distance', '@distance{%4.2f km}'),
-               ('elevation', '@elevation{%5d m}'),
-               ('grade', '@grade{00} %'),
+                ('distance', '@distance{%4.2f km}'),
+                ('elevation', '@elevation{%5d m}'),
+                ('grade', '@grade{00} %'),
             ]
 
             # Grade
@@ -369,7 +383,7 @@ def track_json(request, trail_id, track_id):
 def tile(request, z, x, y):
     url_komoot = 'http://a.tile.komoot.de/komoot-2/{}/{}/{}.png'.format(z, x, y)
     url_topo = 'https://b.tile.opentopomap.org/{}/{}/{}.png'.format(z, x, y)
-    url_cycle = 'https://tile.thunderforest.com/cycle/{}/{}/{}.png?apikey={}'\
+    url_cycle = 'https://tile.thunderforest.com/cycle/{}/{}/{}.png?apikey={}' \
         .format(z, x, y, os.environ.get('OPEN_CYCLE_MAP'))
 
     r = requests.get(url_komoot, timeout=60)

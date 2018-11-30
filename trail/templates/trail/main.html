@@ -229,6 +229,14 @@
                     {% endwith %}
                 {% endwith %}
             {% endfor %}
+            {% if user.is_authenticated %}
+                <p><!-- empty --></p>
+                <div>
+                    {% trans 'Download the GPX' as button_label %}
+                    {% url 'trail__download' trail.id as button_link %}
+                    {% tpl_button button_label button_link %}
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
