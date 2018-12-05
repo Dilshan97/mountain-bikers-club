@@ -229,7 +229,7 @@
                     {% endwith %}
                 {% endwith %}
             {% endfor %}
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated and not trail.is_draft %}
                 <p><!-- empty --></p>
                 <div>
                     {% trans 'Download the GPX' as button_label %}
