@@ -1,6 +1,7 @@
 import os
 import requests
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, JsonResponse, Http404, HttpResponse
 from django.urls import reverse, reverse_lazy
@@ -56,6 +57,7 @@ def edit(request, trail_id):
 
         if form.is_valid():
             form.save()
+            messages.success(request, _('Trail details updated.'))
 
             return HttpResponseRedirect(reverse('trail__main', args=[trail.id]))
 

@@ -1,7 +1,9 @@
+from django.contrib import messages
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import gettext as _
 from django.utils import timezone
 from django.views.generic import DeleteView
 
@@ -66,6 +68,7 @@ def edit(request, slug):
 
         if form.is_valid():
             form.save()
+            messages.success(request, _('User details updated.'))
 
             return HttpResponseRedirect(reverse('member__main', args=[current_user.username]))
 
