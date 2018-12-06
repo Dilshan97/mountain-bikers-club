@@ -31,7 +31,6 @@ It's not a mistake!
 - [Mastodon](https://mastodon.social/@cedeber)
 
 ## Contribution
-
 Please make sure to read the [Contributing Guide](CONTRIBUTING.md) before making
 a pull request.
 
@@ -43,9 +42,7 @@ of the app, you can send me some money via Buy Me A Coffee.
 
 [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/cedeber)
 
-
 ## License
-
 [GPL-3.0](LICENSE)
 
 Copyright (c) 2018, Cédric Eberhardt
