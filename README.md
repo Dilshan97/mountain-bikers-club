@@ -1,4 +1,9 @@
 # Mountain Bikers Club
+
+## Design Resources
+You are a designer and want to contribute?
+We have a [dedicated GitHub repository only for you](https://github.com/cedeber/mountain-bikers-club-design).
+
 ## Technologies
 - The application runs with Django, Celery, PostgreSQL and Redis.
 - The maps are build with Leaflet and OpenStreetMap.
