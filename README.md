@@ -1,9 +1,34 @@
 # Mountain Bikers Club
+
+## Design Resources
+You are a designer and want to contribute?
+We have a [dedicated GitHub repository only for you](https://github.com/cedeber/mountain-bikers-club-design).
+
 ## Technologies
 - The application runs with Django, Celery, PostgreSQL and Redis.
 - The maps are build with Leaflet and OpenStreetMap.
 - The graphs are build thanks to Bokeh.
 - The JavaScript and CSS are built on top of [my frontend library](https://github.com/cedeber/eukolia).
+
+### Python packages
+- bleach
+- bokeh
+- boto3
+- Brotli
+- celery
+- Django
+- django-csp
+- django-heroku
+- django-robots
+- django-storages
+- gunicorn
+- markdow2
+- psycopg2-binary
+- redis
+- requests
+- scipy
+- staticmap
+- timezonefinder
 
 ## Browsers support
 Mountain Bikers Club doesn't support legacy browsers.
@@ -31,7 +56,6 @@ It's not a mistake!
 - [Mastodon](https://mastodon.social/@cedeber)
 
 ## Contribution
-
 Please make sure to read the [Contributing Guide](CONTRIBUTING.md) before making
 a pull request.
 
@@ -43,9 +67,7 @@ of the app, you can send me some money via Buy Me A Coffee.
 
 [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/cedeber)
 
-
 ## License
-
 [GPL-3.0](LICENSE)
 
 Copyright (c) 2018, Cédric Eberhardt
