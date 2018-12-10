@@ -21,3 +21,6 @@ local_settings.py
 db.sqlite3
 staticfiles
 mediafiles
+
+# OS
+.DS_Store
