@@ -10,6 +10,26 @@ We have a [dedicated GitHub repository only for you](https://github.com/cedeber/
 - The graphs are build thanks to Bokeh.
 - The JavaScript and CSS are built on top of [my frontend library](https://github.com/cedeber/eukolia).
 
+### Python packages
+- bleach
+- bokeh
+- boto3
+- Brotli
+- celery
+- Django
+- django-csp
+- django-heroku
+- django-robots
+- django-storages
+- gunicorn
+- markdow2
+- psycopg2-binary
+- redis
+- requests
+- scipy
+- staticmap
+- timezonefinder
+
 ## Browsers support
 Mountain Bikers Club doesn't support legacy browsers.
 
