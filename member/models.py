@@ -9,7 +9,7 @@ from trail.models import Trail
 
 
 def user_directory_path(instance, filename):
-    return 'members/{0}/{1}'.format(instance.id, filename)
+    return f'members/{instance.id}/{filename}'
 
 
 def resize_avatar(image_field):
@@ -35,5 +35,6 @@ class User(AbstractUser):
         },
     )
     favorite_trails = models.ManyToManyField(Trail, related_name='favorite_by')
+    following_users = models.ManyToManyField('self', symmetrical=False, related_name='followed_by')
     is_premium = models.BooleanField(_('Premium member'), default=False)
     premium_until = models.DateField(_('Premium until'), null=True)

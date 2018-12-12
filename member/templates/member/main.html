@@ -16,9 +16,25 @@
                 {% endblocktrans %}
             </h1>
             <p class="trail__published">
+                <span>
                 {% blocktrans trimmed with date=member.date_joined|date %}
                     Member since {{ date }}.
                 {% endblocktrans %}
+                </span>
+                {% if user.is_authenticated and user != member %}
+                    <!--follow-button-->
+                    <a href="{% url 'member__follow' member.username %}"
+                       class="mini-button {% if is_following %}is-following{% endif %}">
+                        {% if is_following %}un{% endif %}follow&nbsp;
+                        <svg width="20" height="20">
+                            <use xlink:href="#heart"></use>
+                        </svg>
+                        {{ member.followed_by.all|length }}
+                    </a>
+                    <!--/follow-button-->
+                {% else %}
+                    {{ member.followed_by.all|length }} followers.
+                {% endif %}
             </p>
             {% if user.is_authenticated and user == member %}
                 <div class="o-flex-inline has-gutter has-hidden-links">
@@ -39,7 +55,8 @@
             {% endif %}
             {% if member.avatar %}
                 <picture class="avatar is-big">
-                    <img class="avatar__image" src="{{ member.avatar.url }}" width="{{ member.avatar.width }}" height="{{ member.avatar.height }}">
+                    <img class="avatar__image" src="{{ member.avatar.url }}" width="{{ member.avatar.width }}"
+                         height="{{ member.avatar.height }}">
                 </picture>
                 <p><!-- empty --></p>
             {% endif %}

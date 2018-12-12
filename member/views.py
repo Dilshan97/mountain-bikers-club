@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, JsonResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -14,18 +14,24 @@ from .forms import UserCreateForm, UserProfileForm
 
 def main(request, slug):
     current_user = request.user
+    current_user_following_users = current_user.following_users.all()
     member = get_object_or_404(User, username=slug)
     member_trails = Trail.objects.filter(author=member, pub_date__lte=timezone.now(), is_draft=False)
     member_favorite_trails = Trail.objects.filter(favorite_by=member, pub_date__lte=timezone.now(), is_draft=False)
+    is_following = False
 
     if not current_user == member:
         member_trails = member_trails.filter(is_private=False)
         member_favorite_trails = member_favorite_trails.filter(is_private=False)
 
+    if current_user.is_authenticated and member in current_user_following_users and not current_user == member:
+        is_following = True
+
     context = {
         'member': member,
         'member_trails': member_trails,
         'member_favorite_trails': member_favorite_trails,
+        'is_following': is_following,
     }
 
     return render(request, 'member/main.html', context)
@@ -53,6 +59,31 @@ def register(request):
     }
 
     return render(request, 'member/register.html', context)
+
+
+@login_required
+def follow(request, slug):
+    current_user = request.user
+    following_users = current_user.following_users.all()
+    slug_user = get_object_or_404(User, username=slug)
+    is_following = True
+
+    if current_user == slug_user:
+        HttpResponseRedirect(reverse('member__main', args=[current_user.username]))
+
+    if slug_user in following_users:
+        current_user.following_users.remove(slug_user)
+        is_following = False
+    else:
+        current_user.following_users.add(slug_user)
+
+    if request.method == 'PUT':
+        return JsonResponse({
+            'status': is_following,
+            'count': len(slug_user.followed_by.all()),
+        })
+    else:
+        return HttpResponseRedirect(reverse('member__main', args=[slug_user.username]))
 
 
 @login_required

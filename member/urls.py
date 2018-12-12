@@ -14,6 +14,7 @@ class AuthenticationForm(auth_views.AuthenticationForm):
 
 
 urlpatterns = [
+    path('@<slug>/follow/', views.follow, name='member__follow'),
     path('@<slug>/edit/', views.edit, name='member__edit'),
     path('@<slug>/delete/', login_required(MemberDelete.as_view()), name='member__delete'),
     path('@<slug>/', views.main, name='member__main'),
