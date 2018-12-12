@@ -14,7 +14,6 @@ We have a [dedicated GitHub repository only for you](https://github.com/cedeber/
 - bleach
 - bokeh
 - boto3
-- Brotli
 - celery
 - Django
 - django-csp
