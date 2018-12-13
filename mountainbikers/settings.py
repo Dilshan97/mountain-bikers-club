@@ -121,6 +121,7 @@ EMAIL_USE_TLS = True
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+
 # Password validation
 
 AUTH_PASSWORD_VALIDATORS = [
