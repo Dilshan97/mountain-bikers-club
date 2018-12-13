@@ -57,6 +57,9 @@ class UserProfileForm(forms.ModelForm):
         if username in forbidden_username or username.lower().startswith('admin'):
             raise forms.ValidationError(_("This username is forbidden."))
 
+        if User.objects.filter(username=username).exists() and self.initial['username'] != username:
+            raise forms.ValidationError(_("A user with that username already exists."))
+
         return username
 
     def save(self, commit=True):
