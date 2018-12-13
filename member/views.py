@@ -14,7 +14,6 @@ from .forms import UserCreateForm, UserProfileForm
 
 def main(request, slug):
     current_user = request.user
-    current_user_following_users = current_user.following_users.all()
     member = get_object_or_404(User, username=slug)
     member_trails = Trail.objects.filter(author=member, pub_date__lte=timezone.now(), is_draft=False)
     member_favorite_trails = Trail.objects.filter(favorite_by=member, pub_date__lte=timezone.now(), is_draft=False)
@@ -24,7 +23,7 @@ def main(request, slug):
         member_trails = member_trails.filter(is_private=False)
         member_favorite_trails = member_favorite_trails.filter(is_private=False)
 
-    if current_user.is_authenticated and member in current_user_following_users and not current_user == member:
+    if current_user.is_authenticated and member in current_user.following_users.all() and not current_user == member:
         is_following = True
 
     context = {
