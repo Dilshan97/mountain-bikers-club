@@ -12,6 +12,7 @@ def user_directory_path(instance, filename):
     return f'members/{instance.id}/{filename}'
 
 
+# TODO In a Thread?
 def resize_avatar(image_field):
     buffer = BytesIO()
     image = Image.open(image_field)
