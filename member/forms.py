@@ -7,7 +7,9 @@ from .models import User, resize_avatar
 
 forbidden_username = [
     'superuser',
-    'member'
+    'member',
+    'customer',
+    'master',
 ]
 
 
