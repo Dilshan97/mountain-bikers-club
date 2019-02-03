@@ -67,6 +67,6 @@ of the app, you can send me some money via Buy Me A Coffee.
 [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/cedeber)
 
 ## License
-[GPL-3.0](LICENSE)
+[AGPL-3.0](LICENSE)
 
-Copyright (c) 2018, Cédric Eberhardt
+Copyright (c) 2018-2019, Cédric Eberhardt
