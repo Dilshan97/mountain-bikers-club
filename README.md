@@ -2,7 +2,7 @@
 
 ## Design Resources
 You are a designer and want to contribute?
-We have a [dedicated GitHub repository only for you](https://github.com/cedeber/mountain-bikers-club-design).
+We have a [dedicated GitHub repository only for you](https://github.com/mountainbikers/design-resources).
 
 ## Technologies
 - The application runs with Django, Celery, PostgreSQL and Redis.
@@ -58,7 +58,7 @@ It's not a mistake!
 Please make sure to read the [Contributing Guide](CONTRIBUTING.md) before making
 a pull request.
 
-Thank you to all [the people who already contributed to Mountain Bikers Club](https://github.com/cedeber/mountain-bikers-club/graphs/contributors)!
+Thank you to all [the people who already contributed to Mountain Bikers Club](https://github.com/mountainbikers/mountain-bikers-club/graphs/contributors)!
 
 ## Financial Contribution
 The hosting on Heroku and DigitalOcean are not free. If you want to support the development
