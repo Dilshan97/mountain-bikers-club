@@ -52,7 +52,7 @@ statistics nor ads. As you may have noticed there is no Cookie banner.
 It's not a mistake!
 
 ## Stay In Touch
-- [Mastodon](https://mastodon.social/@cedeber)
+[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/mountainbikers)
 
 ## Contribution
 Please make sure to read the [Contributing Guide](CONTRIBUTING.md) before making
